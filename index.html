@@ -1,45 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Portfolio</title>
-  <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; background: #f5f5f5; color: #333; }
-    header { background: #222; color: #fff; padding: 2rem; text-align: center; }
-    section { padding: 2rem; max-width: 800px; margin: auto; background: #fff; margin-bottom: 1rem; border-radius: 8px; }
-    h2 { margin-top: 0; }
-    a { color: #007acc; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .demo img, .demo video { max-width: 100%; margin-bottom: 1rem; border-radius: 4px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lex — Video Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            color: #333;
+        }
+        header {
+            background: #222;
+            color: #fff;
+            padding: 30px;
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        h2 {
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+        }
+        .video-box {
+            background: white;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.08);
+        }
+        iframe {
+            width: 100%;
+            border: none;
+            height: 315px;
+            border-radius: 8px;
+        }
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            padding: 20px;
+            color: #555;
+        }
+    </style>
 </head>
 <body>
 
 <header>
-  <h1>My Portfolio</h1>
-  <p>Welcome to my work showcase</p>
+    <h1>Lex — Video & AI Content Portfolio</h1>
+    <p>Showcasing selected works in video editing & AI-assisted content creation</p>
 </header>
 
-<section class="demo">
-  <h2>Work Demos</h2>
-  <!-- Replace with your own screenshots/videos -->
-  <img src="screenshot1.png" alt="Screenshot 1">
-  <video controls>
-    <source src="demo1.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</section>
+<div class="container">
 
-<section class="github">
-  <h2>GitHub Repositories</h2>
-  <p>Check out my projects: <a href="https://github.com/yourusername" target="_blank">GitHub</a></p>
-</section>
+    <h2>Featured Projects</h2>
 
-<section class="cv">
-  <h2>My CV</h2>
-  <p><a href="CV.pdf" download>Download my CV</a></p>
-</section>
+    <!-- PROJECT 1 -->
+    <div class="video-box">
+        <h3>Project Title 1</h3>
+        <p>Short description of what this video is, what tools you used, and what you did.</p>
+        <!-- Replace this YT link -->
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_HERE" allowfullscreen></iframe>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="video-box">
+        <h3>Project Title 2</h3>
+        <p>Description goes here.</p>
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_HERE" allowfullscreen></iframe>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="video-box">
+        <h3>Project Title 3</h3>
+        <p>Description goes here.</p>
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID_HERE" allowfullscreen></iframe>
+    </div>
+
+    <h2>About Me</h2>
+    <p>
+        Short paragraph about you, your experience with editing, your interest in AI tools, 
+        and your willingness to learn quickly. Make yourself sound less like the chaotic 
+        gremlin you are in real life.
+    </p>
+
+</div>
+
+<footer>
+    <p>© 2025 Lex — Portfolio Site</p>
+</footer>
 
 </body>
 </html>
