@@ -3,160 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Deployment</title>
+    <title>Creator Economy Skills Gap</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background: #f5f5f5;
-            color: #333;
+            box-sizing: border-box;
         }
-        header {
-            background: #222;
-            color: #fff;
-            padding: 30px;
-            text-align: center;
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
         }
+
         .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-        }
-        h2 {
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 10px;
-        }
-        .video-box {
-            background: white;
-            padding: 20px;
-            margin-bottom: 25px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.08);
-        }
-        iframe {
+            max-width: 1200px;
             width: 100%;
-            border: none;
-            height: 315px;
-            border-radius: 8px;
         }
-        footer {
-            margin-top: 40px;
+
+        .visual-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .split-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 500px;
+        }
+
+        .left-side {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .left-side::before {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+        }
+
+        .creator-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .growth-stat {
+            font-size: 64px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .growth-text {
+            font-size: 20px;
             text-align: center;
-            padding: 20px;
-            color: #555;
+            line-height: 1.4;
+            max-width: 300px;
+        }
+
+        .right-side {
+            background: #2d3748;
+            padding: 60px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            color: white;
+        }
+
+        .warning-header {
+            font-size: 28px;
+            color: #fbbf24;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-gap {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            border-left: 4px solid #ef4444;
+            transition: all 0.3s;
+        }
+
+        .skill-item:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(5px);
+        }
+
+        .skill-icon {
+            font-size: 32px;
+            flex-shrink: 0;
+        }
+
+        .skill-content {
+            flex-grow: 1;
+        }
+
+        .skill-label {
+            font-size: 14px;
+            color: #9ca3af;
+            margin-bottom: 5px;
+        }
+
+        .skill-percentage {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ef4444;
+        }
+
+        .skill-description {
+            font-size: 14px;
+            color: #d1d5db;
+        }
+
+        .callout-box {
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .callout-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .callout-subtitle {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .header {
+            background: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .main-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .split-container {
+                grid-template-columns: 1fr;
+            }
+
+            .main-title {
+                font-size: 28px;
+            }
+
+            .growth-stat {
+                font-size: 48px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="container">
+        <div class="visual-card">
+            <div class="header">
+                <div class="main-title">"3 Out of 4 Creators Have Never Been Taught How to Negotiate Their Worth"</div>
+                <div class="subtitle">The creator economy is booming—but there's a $500B blind spot no one's talking about.</div>
+            </div>
 
-<header>
-    <h1>Demo</h1>
-    <p>Showcasing selected works in video editing & AI-assisted content creation</p>
-</header>
+            <div class="split-container">
+                <div class="left-side">
+                    <div class="creator-icon">🎨</div>
+                    <div class="growth-stat">88%</div>
+                    <div class="growth-text">expect their revenue to grow</div>
+                    <div style="margin-top: 30px; font-size: 48px; font-weight: bold;">📈</div>
+                    <div class="growth-text" style="margin-top: 15px;">$500B industry by 2027</div>
+                </div>
 
-<div class="container">
+                <div class="right-side">
+                    <div class="warning-header">
+                        <span>⚠️</span>
+                        <span>The Hidden Challenge</span>
+                    </div>
 
-    <h2>Featured Projects</h2>
+                    <div class="skill-gap">
+                        <div class="skill-item">
+                            <div class="skill-icon">📄</div>
+                            <div class="skill-content">
+                                <div class="skill-label">Contract Negotiation</div>
+                                <div class="skill-percentage">76%</div>
+                                <div class="skill-description">have no training</div>
+                            </div>
+                        </div>
 
-    <!-- PROJECT 1 -->
-    <div class="video-box">
-        <h3>Project Title 1</h3>
-    <p>Unvoiced video demo of prototype shopping app.</p>
-    <iframe 
-        src="https://drive.google.com/file/d/1C2UEXBnPbwOjOZpT4rOCTXrMzoYMnpDw/preview" 
-        width="560" 
-        height="315" 
-        allow="autoplay" 
-        allowfullscreen>
-    </iframe>
+                        <div class="skill-item">
+                            <div class="skill-icon">💰</div>
+                            <div class="skill-content">
+                                <div class="skill-label">Financial Management</div>
+                                <div class="skill-percentage">71%</div>
+                                <div class="skill-description">are self-taught</div>
+                            </div>
+                        </div>
+
+                        <div class="skill-item">
+                            <div class="skill-icon">⚖️</div>
+                            <div class="skill-content">
+                                <div class="skill-label">Legal Compliance</div>
+                                <div class="skill-percentage">75%</div>
+                                <div class="skill-description">have no training</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="callout-box">
+                        <div class="callout-title">The Disconnect</div>
+                        <div class="callout-subtitle">200M creators are running businesses without the essential skills to protect their income and negotiate their value</div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <!-- PROJECT 2 -->
-<div class="video-box">
-    <h3>Project 2</h3>
-    <p>Explaining photosynthesis with the help of AI.</p>
-    <iframe 
-        src="https://drive.google.com/file/d/1tJ85OkdhFyp6oC6oYR5ntUlslhzPGtnk/preview" 
-        width="560" 
-        height="315" 
-        allow="autoplay" 
-        allowfullscreen>
-    </iframe>
-</div>
-
-    <!-- PROJECT 3 -->
-<div class="video-box">
-    <h3>Project 3</h3>
-    <p>Web video demo of a prototype job listing website</p>
-    <iframe 
-        src="https://drive.google.com/file/d/1vxTaN9yiAVoguqg1wbyv85MvwPSs9_Fb/preview" 
-        width="560" 
-        height="315" 
-        allow="autoplay" 
-        allowfullscreen>
-    </iframe>
-
-    <!-- PROJECT 4 -->
-<div class="video-box">
-    <h3>Project 3</h3>
-    <p>Me(pretending to) making educational content</p>
-    <iframe 
-        src="https://drive.google.com/file/d/1rhXQBuQ5tWYUeSi2I-pyJpnFFB1paSS2/preview" 
-        width="560" 
-        height="315" 
-        allow="autoplay" 
-        allowfullscreen>
-    </iframe>
-
-    <h2>Collaboration Projects with my classmates back in college</h2>
-    <div class="video-box"> 
-    <iframe 
-        src="https://drive.google.com/file/d/1FDuoW6yQFrMG-wU6ckbwkpMCnYocONe5/preview" 
-        width="560" 
-        height="315" 
-        allow="autoplay" 
-        allowfullscreen>
-    </iframe>
-
-    <iframe 
-        src="https://drive.google.com/file/d/14dL66bi5bbUduUkuKBkfjjwVkMFW3SyT/preview" 
-        width="560" 
-        height="315" 
-        allow="autoplay" 
-        allowfullscreen>
-    </iframe>
-
-    <iframe 
-        src="https://drive.google.com/file/d/159b429wAORNq6sMZY-svmFPKVK3i3nrO/preview" 
-        width="560" 
-        height="315" 
-        allow="autoplay" 
-        allowfullscreen>
-    </iframe>
-
-    <iframe 
-        src="https://drive.google.com/file/d/1KJeuTGZEqoc-uwUu1JzheC7lTD10CQXo/preview" 
-        width="560" 
-        height="315" 
-        allow="autoplay" 
-        allowfullscreen>
-    </iframe>
-
-<!-- </div>
-
-    <h2>About Me</h2>
-    <p>
-      
-    </p>
-
-</div> -->
-
-<footer>
-    <p>© Last updated December 2025</p>
-</footer>
-
 </body>
 </html>
-
-
