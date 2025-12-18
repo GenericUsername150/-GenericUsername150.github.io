@@ -1,293 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Creator Economy Visuals</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creator Economy Insights Dashboard</title>
+    <style>
+        /* Tab Navigation Styling */
+        .tabs-wrapper {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-  <style>
-    /* ========== GLOBAL RESET ========== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+        .tab-radio {
+            display: none;
+        }
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      min-height: 100vh;
-      padding: 30px;
-      color: white;
-    }
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
 
-    /* ========== TABS ========== */
-    .tabs {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 30px;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
+        .tab-label {
+            padding: 15px 25px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border-radius: 30px;
+            cursor: pointer;
+            font-family: 'Segoe UI', sans-serif;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
 
-    .tab {
-      padding: 12px 20px;
-      border-radius: 999px;
-      cursor: pointer;
-      background: rgba(255,255,255,0.1);
-      font-weight: 600;
-      transition: all 0.3s;
-    }
+        .tab-label:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
 
-    .tab:hover {
-      background: rgba(255,255,255,0.2);
-    }
+        .tab-content {
+            display: none;
+        }
 
-    .tab.active {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-    }
+        /* Logic to show content based on radio selection */
+        #tab1:checked ~ .tab-nav label[for="tab1"],
+        #tab2:checked ~ .tab-nav label[for="tab2"],
+        #tab3:checked ~ .tab-nav label[for="tab3"] {
+            background: white;
+            color: #764ba2;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
 
-    /* ========== PANELS ========== */
-    .panel {
-      display: none;
-      animation: fadeIn 0.5s ease;
-    }
+        #tab1:checked ~ .content-container #content1,
+        #tab2:checked ~ .content-container #content2,
+        #tab3:checked ~ .content-container #content3 {
+            display: block;
+        }
 
-    .panel.active {
-      display: block;
-    }
+        /* Global Body Style to match your gradient theme */
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+        /* --- INTEGRATED STYLES FROM DESIGN 1 --- */
+        .visual-card-1 { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .split-container-1 { display: grid; grid-template-columns: 1fr 1fr; min-height: 500px; }
+        .left-side-1 { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 60px 40px; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; position: relative; overflow: hidden; }
+        .creator-icon-1 { font-size: 80px; margin-bottom: 20px; animation: float-1 3s ease-in-out infinite; }
+        @keyframes float-1 { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        .growth-stat-1 { font-size: 64px; font-weight: bold; margin-bottom: 10px; }
+        .right-side-1 { background: #2d3748; padding: 60px 40px; display: flex; flex-direction: column; justify-content: center; color: white; }
+        .skill-item-1 { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 10px; border-left: 4px solid #ef4444; }
+        .skill-percentage-1 { font-size: 32px; font-weight: bold; color: #ef4444; }
 
-    /* ========== SHARED CARD STYLES ========== */
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-    }
+        /* --- INTEGRATED STYLES FROM DESIGN 2 --- */
+        .visual-card-2 { background: white; border-radius: 25px; overflow: hidden; box-shadow: 0 25px 70px rgba(0,0,0,0.4); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .comparison-section-2 { display: grid; grid-template-columns: 1fr auto 1fr; gap: 40px; padding: 60px 40px; align-items: center; background: #f8fafc; }
+        .multiplier-circle-2 { width: 200px; height: 200px; border-radius: 50%; background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; animation: pulse-2 2s infinite; }
+        @keyframes pulse-2 { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        .stats-panel-2 { background: #1e293b; padding: 50px 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
 
-    .visual-card {
-      background: white;
-      color: #1f2937;
-      border-radius: 25px;
-      overflow: hidden;
-      box-shadow: 0 25px 70px rgba(0,0,0,0.4);
-    }
+        /* --- INTEGRATED STYLES FROM DESIGN 3 --- */
+        .transformation-section-3 { display: grid; grid-template-columns: 1fr auto 1fr; gap: 40px; padding: 60px 40px; align-items: center; position: relative; }
+        .transformation-section-3::before { content: ''; position: absolute; top: 0; left: 0; right: 50%; bottom: 0; background: linear-gradient(90deg, #f1f5f9 0%, #e2e8f0 100%); z-index: 0; }
+        .transformation-section-3::after { content: ''; position: absolute; top: 0; left: 50%; right: 0; bottom: 0; background: linear-gradient(90deg, #fef3c7 0%, #fde68a 100%); z-index: 0; }
+        .ai-brain-3 { width: 180px; height: 180px; border-radius: 50%; background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; animation: pulse-3 3s infinite; position: relative; z-index: 2; }
+        @keyframes pulse-3 { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-    /* =========
-       EVERYTHING BELOW IS YOUR EXISTING STYLES
-       (lightly trimmed so they can coexist)
-       ========= */
-
-    /* ----------- VISUAL 1 ----------- */
-    .v1 body {}
-    .v1 .header { background: white; padding: 40px; text-align: center; }
-    .v1 .main-title { font-size: 36px; font-weight: bold; margin-bottom: 15px; }
-    .v1 .subtitle { font-size: 18px; color: #6b7280; font-style: italic; }
-
-    .v1 .split-container {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 500px;
-    }
-
-    .v1 .left-side {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      padding: 60px;
-      color: white;
-      text-align: center;
-    }
-
-    .v1 .right-side {
-      background: #2d3748;
-      padding: 60px;
-      color: white;
-    }
-
-    .v1 .growth-stat { font-size: 64px; font-weight: bold; }
-    .v1 .skill-item {
-      background: rgba(255,255,255,0.05);
-      padding: 15px;
-      margin-bottom: 15px;
-      border-left: 4px solid #ef4444;
-      border-radius: 10px;
-    }
-
-    /* ----------- VISUAL 2 ----------- */
-    .v2 .header {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      padding: 50px;
-      text-align: center;
-      color: white;
-    }
-
-    .v2 .comparison-section {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 40px;
-      padding: 60px;
-      background: #f8fafc;
-    }
-
-    .v2 .performance-bar {
-      height: 60px;
-      border-radius: 30px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-      color: white;
-      font-weight: bold;
-    }
-
-    .v2 .brand-bar {
-      background: linear-gradient(90deg, #94a3b8, #64748b);
-    }
-
-    .v2 .creator-bar {
-      background: linear-gradient(90deg, #667eea, #764ba2);
-    }
-
-    /* ----------- VISUAL 3 ----------- */
-    .v3 .header {
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      padding: 50px;
-      text-align: center;
-      color: white;
-    }
-
-    .v3 .transformation-section {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      gap: 40px;
-      padding: 60px;
-    }
-
-    .v3 .content-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-      justify-items: center;
-    }
-
-    .v3 .content-item {
-      font-size: 32px;
-      padding: 20px;
-      border-radius: 12px;
-      background: #e5e7eb;
-    }
-
-  </style>
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .split-container-1, .comparison-section-2, .transformation-section-3 { grid-template-columns: 1fr; }
+            .stats-panel-2 { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
-
 <body>
 
-  <!-- TABS -->
-  <div class="tabs">
-    <div class="tab active" onclick="showPanel(0)">Skills Gap</div>
-    <div class="tab" onclick="showPanel(1)">Creator vs Brand</div>
-    <div class="tab" onclick="showPanel(2)">AI Transformation</div>
-  </div>
+<div class="tabs-wrapper">
+    <input type="radio" name="tabs" id="tab1" class="tab-radio" checked>
+    <input type="radio" name="tabs" id="tab2" class="tab-radio">
+    <input type="radio" name="tabs" id="tab3" class="tab-radio">
 
-  <!-- PANEL 1 -->
-  <div class="panel active v1">
-    <div class="container">
-      <div class="visual-card">
-        <div class="header">
-          <div class="main-title">3 Out of 4 Creators Can’t Negotiate</div>
-          <div class="subtitle">$500B industry, zero business training</div>
-        </div>
-
-        <div class="split-container">
-          <div class="left-side">
-            <div class="growth-stat">88%</div>
-            expect revenue growth
-          </div>
-          <div class="right-side">
-            <div class="skill-item">📄 Contract Negotiation — 76%</div>
-            <div class="skill-item">💰 Financial Management — 71%</div>
-            <div class="skill-item">⚖️ Legal Compliance — 75%</div>
-          </div>
-        </div>
-      </div>
+    <div class="tab-nav">
+        <label for="tab1" class="tab-label">Skills Gap</label>
+        <label for="tab2" class="tab-label">Performance Data</label>
+        <label for="tab3" class="tab-label">AI Transformation</label>
     </div>
-  </div>
 
-  <!-- PANEL 2 -->
-  <div class="panel v2">
-    <div class="container">
-      <div class="visual-card">
-        <div class="header">
-          <h1>Creator Content Wins</h1>
-          <p>2.7× better performance</p>
-        </div>
-
-        <div class="comparison-section">
-          <div>
-            <h3>Brand Content</h3>
-            <div class="performance-bar brand-bar">1.0×</div>
-          </div>
-
-          <div style="font-size:48px; font-weight:bold;">→ 2.7×</div>
-
-          <div>
-            <h3>Creator Content</h3>
-            <div class="performance-bar creator-bar">2.7×</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- PANEL 3 -->
-  <div class="panel v3">
-    <div class="container">
-      <div class="visual-card">
-        <div class="header">
-          <h1>AI Changes What’s Possible</h1>
-          <p>Not faster—*different*</p>
-        </div>
-
-        <div class="transformation-section">
-          <div>
-            <h3>Before AI</h3>
-            <div class="content-grid">
-              <div class="content-item">📸</div>
-              <div class="content-item">✍️</div>
-              <div class="content-item">🎨</div>
+    <div class="content-container">
+        <div id="content1" class="tab-content">
+            <div class="visual-card-1">
+                <div style="background: white; padding: 40px; text-align: center;">
+                    <h1 style="font-size: 36px; color: #1f2937; margin-bottom: 15px;">"3 Out of 4 Creators Have Never Been Taught How to Negotiate Their Worth"</h1>
+                    <p style="font-size: 18px; color: #6b7280; font-style: italic;">The creator economy is booming—but there's a $500B blind spot no one's talking about.</p>
+                </div>
+                <div class="split-container-1">
+                    <div class="left-side-1">
+                        <div class="creator-icon-1">🎨</div>
+                        <div class="growth-stat-1">88%</div>
+                        <div style="font-size: 20px; text-align: center;">expect their revenue to grow</div>
+                        <div style="margin-top: 30px; font-size: 48px; font-weight: bold;">📈</div>
+                        <div style="font-size: 20px; text-align: center; margin-top: 15px;">$500B industry by 2027</div>
+                    </div>
+                    <div class="right-side-1">
+                        <div style="font-size: 28px; color: #fbbf24; margin-bottom: 30px; display: flex; align-items: center; gap: 10px;">
+                            <span>⚠️</span><span>The Hidden Challenge</span>
+                        </div>
+                        <div class="skill-item-1">
+                            <div style="font-size: 32px;">📄</div>
+                            <div>
+                                <div style="font-size: 14px; color: #9ca3af;">Contract Negotiation</div>
+                                <div class="skill-percentage-1">76%</div>
+                                <div style="font-size: 14px; color: #d1d5db;">have no training</div>
+                            </div>
+                        </div>
+                        <div class="skill-item-1">
+                            <div style="font-size: 32px;">💰</div>
+                            <div>
+                                <div style="font-size: 14px; color: #9ca3af;">Financial Management</div>
+                                <div class="skill-percentage-1">71%</div>
+                                <div style="font-size: 14px; color: #d1d5db;">are self-taught</div>
+                            </div>
+                        </div>
+                        <div class="skill-item-1">
+                            <div style="font-size: 32px;">⚖️</div>
+                            <div>
+                                <div style="font-size: 14px; color: #9ca3af;">Legal Compliance</div>
+                                <div class="skill-percentage-1">75%</div>
+                                <div style="font-size: 14px; color: #d1d5db;">have no training</div>
+                            </div>
+                        </div>
+                        <div style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); padding: 25px; border-radius: 15px; margin-top: 30px; text-align: center;">
+                            <div style="font-weight: bold; margin-bottom: 10px;">The Disconnect</div>
+                            <div style="font-size: 14px; opacity: 0.9;">200M creators are running businesses without the essential skills to protect their income and negotiate their value</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-
-          <div style="font-size:48px;">🤖</div>
-
-          <div>
-            <h3>With AI</h3>
-            <div class="content-grid">
-              <div class="content-item">🎬</div>
-              <div class="content-item">🎵</div>
-              <div class="content-item">🎮</div>
-              <div class="content-item">📱</div>
-              <div class="content-item">🎭</div>
-              <div class="content-item">🎨</div>
-            </div>
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <script>
-    function showPanel(index) {
-      document.querySelectorAll('.panel').forEach((p, i) =>
-        p.classList.toggle('active', i === index)
-      );
-      document.querySelectorAll('.tab').forEach((t, i) =>
-        t.classList.toggle('active', i === index)
-      );
-    }
-  </script>
+        <div id="content2" class="tab-content">
+            <div class="visual-card-2">
+                <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 50px 40px; text-align: center; color: white;">
+                    <h1 style="font-size: 42px; margin-bottom: 15px;">"Creator Content Crushes Brand Content by 2.7x"</h1>
+                    <p style="font-size: 20px; max-width: 900px; margin: 0 auto;">81% of enterprise marketers confirm: authentic creator content outperforms polished brand assets.</p>
+                </div>
+                <div class="comparison-section-2">
+                    <div style="text-align: center;">
+                        <div style="font-size: 24px; font-weight: bold; margin-bottom: 30px; color: #64748b;">Brand Content</div>
+                        <div style="font-size: 80px; margin-bottom: 30px;">🏢</div>
+                        <div style="background: #94a3b8; height: 60px; border-radius: 30px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">1.0x</div>
+                    </div>
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <div class="multiplier-circle-2">
+                            <div style="font-size: 72px; font-weight: bold;">2.7x</div>
+                            <div style="font-size: 18px;">Better</div>
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 24px; font-weight: bold; margin-bottom: 30px; color: #764ba2;">Creator Content</div>
+                        <div style="font-size: 80px; margin-bottom: 30px;">🎨👥📱</div>
+                        <div style="background: linear-gradient(90deg, #667eea 0%, #764ba2 100%); height: 60px; border-radius: 30px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold;">2.7x</div>
+                    </div>
+                </div>
+                <div class="stats-panel-2">
+                    <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 20px;">
+                        <div style="font-size: 56px; font-weight: bold; color: #667eea;">81%</div>
+                        <div style="color: #94a3b8;">outperforms brand assets</div>
+                    </div>
+                    <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 20px;">
+                        <div style="font-size: 56px; font-weight: bold; color: #667eea;">100%</div>
+                        <div style="color: #94a3b8;">plan to use across all channels</div>
+                    </div>
+                    <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.05); border-radius: 20px;">
+                        <div style="font-size: 56px; font-weight: bold; color: #667eea;">4%</div>
+                        <div style="color: #94a3b8;">say brand content is better</div>
+                    </div>
+                </div>
+                <div style="padding: 30px; text-align: center; color: #64748b; font-size: 14px;">Source: Linqia 2026 State of Influencer Marketing Report</div>
+            </div>
+        </div>
+
+        <div id="content3" class="tab-content">
+            <div class="visual-card-2">
+                <div style="background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%); padding: 50px 40px; text-align: center; color: white;">
+                    <h1 style="font-size: 38px; margin-bottom: 20px;">"AI Isn't Just Speeding Up Content—It's Enabling the Impossible"</h1>
+                    <p style="font-size: 18px; opacity: 0.95;">81% of creators say AI enables content that couldn't exist without it.</p>
+                </div>
+                <div class="transformation-section-3">
+                    <div style="text-align: center; position: relative; z-index: 1;">
+                        <div style="background: #cbd5e1; padding: 8px 20px; border-radius: 20px; display: inline-block;">Without AI</div>
+                        <div style="font-size: 80px; margin: 30px 0;">🧑‍💻</div>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 250px; margin: 0 auto;">
+                            <div style="background: white; padding: 15px; border-radius: 10px; font-size: 24px;">📸</div>
+                            <div style="background: white; padding: 15px; border-radius: 10px; font-size: 24px;">✍️</div>
+                            <div style="background: white; padding: 15px; border-radius: 10px; font-size: 24px;">🎨</div>
+                        </div>
+                    </div>
+                    <div class="ai-brain-3">
+                        <div style="font-size: 72px;">🤖</div>
+                        <div style="font-weight: bold;">AI POWERED</div>
+                    </div>
+                    <div style="text-align: center; position: relative; z-index: 1;">
+                        <div style="background: #f59e0b; color: white; padding: 8px 20px; border-radius: 20px; display: inline-block;">With AI</div>
+                        <div style="font-size: 80px; margin: 30px 0;">🧑‍💻✨</div>
+                        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 250px; margin: 0 auto;">
+                            <div style="background: white; padding: 15px; border-radius: 10px; font-size: 24px;">🎬</div>
+                            <div style="background: white; padding: 15px; border-radius: 10px; font-size: 24px;">🎵</div>
+                            <div style="background: white; padding: 15px; border-radius: 10px; font-size: 24px;">🎮</div>
+                            <div style="background: white; padding: 15px; border-radius: 10px; font-size: 24px;">🎭</div>
+                            <div style="background: white; padding: 15px; border-radius: 10px; font-size: 24px;">📱</div>
+                            <div style="background: white; padding: 15px; border-radius: 10px; font-size: 24px;">✨</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="background: #1e293b; padding: 50px; display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                    <div style="background: rgba(255,255,255,0.05); padding: 40px; border-radius: 20px; text-align: center;">
+                        <div style="font-size: 60px; font-weight: bold; color: #8b5cf6;">81%</div>
+                        <div style="color: #cbd5e1;">Produce content they otherwise couldn't</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.05); padding: 40px; border-radius: 20px; text-align: center;">
+                        <div style="font-size: 60px; font-weight: bold; color: #8b5cf6;">76%</div>
+                        <div style="color: #cbd5e1;">Report accelerated business growth</div>
+                    </div>
+                </div>
+                <div style="padding: 30px; text-align: center; color: #64748b; font-size: 14px;">Source: Adobe Creators' Toolkit Report 2025</div>
+            </div>
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
